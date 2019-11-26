@@ -13,8 +13,9 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
-const theHobbit = new Books("The Hobbit ", "J.R.R. Tolkien", 295, false);
-
+const theHobbit = new Books("The Hobbit ", "J.R.R. Tolkien ", 295, false);
+const wrap = document.querySelector("#newBookForm li .text");
+console.log(wrap);
 addBookToLibrary(theHobbit);
 console.log(myLibrary);
 
@@ -24,6 +25,12 @@ function init() {
 
 function renderBookList() {
   let bookList = document.getElementById("booklist");
-  bookList.innerHTML = JSON.stringify(myLibrary);
+  var text = "";
+  Object.values(myLibrary[0]).forEach(function(k) {
+    text += k + " ";
+  });
+  bookList.innerHTML = text;
+  console.log(text);
 }
+
 init();
