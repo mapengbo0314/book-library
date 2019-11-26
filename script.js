@@ -1,9 +1,9 @@
 let myLibrary = [];
 
-
+//-----------------Basic constructor---------------------
 const Books = (title, author, pages, read) => {
   const info = () => {
-    return `${title}, by ${author}, ${pages} pages, ${read ? 'read' : 'not read yet'}`;
+    return `${title}, by ${author}, ${pages} pages, ${read ? 'read' : 'not read'}`;
   }
 
   const toggleReadBook = () => {
@@ -16,31 +16,58 @@ const Books = (title, author, pages, read) => {
 function addBookToLibrary(book) { //adding a book to the library
   myLibrary.push(book);
 }
-
+//-------------Toggling the hide and show button on "Add New Form"---------------------
 function toggleBookForm() {
   document.querySelector('#newBookForm').classList.toggle('box');
 }
-function addEventHandlers() {
-  renderBookFormHandler();
-}
+
 function renderBookFormHandler() {
   const newBookFormButton = document.querySelector('#newBookFormButton');
   newBookFormButton.onclick = () => toggleBookForm();
 }
 
+//------------Toggling the Read or Not read button----------------------------
+function readBook(element) {
+  let readbook = element.parentNode; // kind of a mystery of what parentNode is..
+  myLibrary[readbook.dataset.libraryIndex].toggleReadBook(); //no idea what dataset.libraryIndex is for.... 
+  renderBookList(); //re render the list so we can see the change!
+}
+function readBookHandlers() {
+  let toggle = document.querySelectorAll('.read-book');
+  toggle.forEach((element) => { //for each element, we try to select those
+    console.log(element); // consoles the button class read-book with i've read this book, so it's the button eleeent we got from the query selector  
+    element.onclick = () => readBook(element); //click function on the function of element we call
+  })
+}
 
+//-----------Delete handlers-------------
+function deleteBook() {
 
+}
+
+function deleteBookHandler() {
+
+}
+//------------------Onsubmit handlers---------------
+function addNewBook() {
+
+}
+//------------------init and event handlers---------------------
 function init() {
   renderBookList();
 }
+function addEventHandlers() {
+  renderBookFormHandler();
+  readBookHandlers();
+}
 
+//------------------Render List-------------------------
 function renderBookList() {
-  let text = ``;
   let bookList = document.getElementById("booklist");
 
   bookList.innerHTML = myLibrary.map((book, index) => {
     console.log(index);
-    return '<div class="book-card" data-library-index="' + index + '"><div class="book-info">' + book.info() + '</div><button class="read-book">' + (!book.read ? "I've read this book" : "I haven't read this book") + '</button><button class="delete-book">Remove book from my library</button></div>';
+    return '<div class="book-card" data-library-index="' + index + '"><div class="book-info">' + book.info() + '</div><button class="read-book">' + ("Reading Toggler") + '</button><button class="delete-book">Remove book from my library</button></div>';
 
   }).join('');
   addEventHandlers();
