@@ -24,6 +24,7 @@ h1 {
   padding: 2px 16px;
 }
 .box {
+  display: none;
 }
 .cardfeature {
   padding: 20px;
