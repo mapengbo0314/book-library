@@ -1,40 +1,33 @@
 <!DOCTYPE html>
 
 <html>
-
-<body>
-  <h1>Pengbo's Library</h1>
-  <link href="index.css" rel="stylesheet" type="text/css" />
-  <div class="card">
-    <div id="booklist"></div>
-  </div>
-  <div class="card">
-
-    <div class="container">
-      <button id="newBookFormButton">ADD NEW BOOK</button>
-      <form id="newBookForm" class="box">
-        <fieldset class="cardfeature">
-          <legend>Adding a new Book</legend>
-          <li>
-            Title: <input type="text" name="title" placeholder="good book" />
-          </li>
-          <li>
-            Author:
-            <input type="text" name="author" placeholder="good book" />
-          </li>
-          <li>
-            Pages: <input type="text" name="pages" placeholder="good book" />
-          </li>
-          <li>
-            Read or not?:
-            <input type="checkbox" name="read" />
-          </li>
-          <button id="submit">Submit</button>
-        </fieldset>
-      </form>
+  <body>
+    <h1>Pengbo's Library</h1>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <div class="card">
+      <div id="booklist"></div>
     </div>
-  </div>
-  <script src="script.js"></script>
-</body>
-
+    <div class="card">
+      <div class="container">
+        <button id="newBookFormButton">ADD NEW BOOK</button>
+        <form id="newBookForm" class="box">
+          <fieldset class="cardfeature">
+            <legend>Adding a new Book</legend>
+            <li>Title: <input type="text" name="title" value="title" /></li>
+            <li>
+              Author:
+              <input type="text" name="author" value="author" />
+            </li>
+            <li>Pages: <input type="text" name="pages" value="pages" /></li>
+            <li>
+              Read or not?:
+              <input type="checkbox" name="read" value="read" />
+            </li>
+            <button id="submit">Submit</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
