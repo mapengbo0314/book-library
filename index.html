@@ -13,19 +13,42 @@
         <form id="newBookForm" class="box">
           <fieldset class="cardfeature">
             <legend>Adding a new Book</legend>
-            <li>Title: <input type="text" name="title" value="title" /></li>
+            <li>
+              Title:
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Moby Dick"
+              />
+            </li>
             <li>
               Author:
-              <input type="text" name="author" value="author" />
+              <input
+                type="text"
+                id="author"
+                name="author"
+                placeholder="Moby Dick"
+              />
             </li>
-            <li>Pages: <input type="text" name="pages" value="pages" /></li>
+            <li>
+              Pages:
+              <input type="text" id="pages" name="pages" placeholder="234" />
+            </li>
             <li>
               Read or not?:
-              <input type="checkbox" name="read" value="read" />
+              <input
+                id="checking"
+                type="checkbox"
+                onclick="checkRead()"
+                name="read"
+                value="false"
+              />
             </li>
-            <button id="submit">Submit</button>
+            <input type="submit" value="Add New Book" />
           </fieldset>
         </form>
+        <button onclick="cleara()">Clear History</button>
       </div>
     </div>
     <script src="script.js"></script>

@@ -4,7 +4,7 @@ let myLibrary = [];
 const Books = (title, author, pages, read) => {
   const info = () => {
     return `${title}, by ${author}, ${pages} pages, ${
-      read ? "read" : "not read"
+      read === "true" ? "read" : "not read" //we have to state that if its true or it doesn't know!
     }`;
   };
 
@@ -18,6 +18,7 @@ const Books = (title, author, pages, read) => {
 function addBookToLibrary(book) {
   //adding a book to the library
   myLibrary.push(book);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
 }
 //-------------Toggling the hide and show button on "Add New Form"---------------------
 function toggleBookForm() {
@@ -44,11 +45,20 @@ function readBookHandlers() {
     element.onclick = () => readBook(element); //click function on the function of element we call
   });
 }
-
+//-------- checking if the checkbox was checked or not-----------
+function checkRead() {
+  var checkBox = document.getElementById("checking");
+  if (checkBox.checked == false) {
+    document.getElementById("checking").value = false;
+  } else {
+    document.getElementById("checking").value = true;
+  }
+}
 //-----------Delete handlers-------------
 function deleteBook(element) {
   let deletebook = element.parentNode;
-  delete myLibrary[deletebook.dataset.libraryIndex];
+  myLibrary.splice(deletebook.dataset.libraryIndex, 1);
+  localStorage.setItem("myLibrary", JSON.stringify(myLibrary));
   console.log("deleted book");
   renderBookList();
 }
@@ -60,17 +70,45 @@ function deleteBookHandler() {
   });
 }
 //------------------Onsubmit handlers---------------
-function addNewBook() {}
+function addNewBook() {
+  let form = document.getElementById("newBookForm");
+  //------ Read in the values -----
+  form.onsubmit = () => {
+    let books = Books(
+      form.elements.title.value,
+      form.elements.author.value,
+      form.elements.pages.value,
+      document.getElementById("checking").value
+    );
+    if (
+      form.elements.title.value == "" ||
+      form.elements.author.value == "" ||
+      form.elements.pages.value == ""
+    ) {
+      alert("it's empty");
+    } else {
+      alert("You have added a new book!");
+      addBookToLibrary(books);
+    }
+  };
+}
+
 //------------------init and event handlers---------------------
+
 function init() {
+  prefixes();
   renderBookList();
 }
 function addEventHandlers() {
   renderBookFormHandler();
+  addNewBook();
   readBookHandlers();
   deleteBookHandler();
 }
-
+function cleara() {
+  localStorage.clear();
+  renderBookList();
+}
 //------------------Render List-------------------------
 function renderBookList() {
   let bookList = document.getElementById("booklist");
@@ -90,13 +128,23 @@ function renderBookList() {
     .join("");
   addEventHandlers();
 }
-const theHobbit = Books("The Hobbits", "J.R.R. Tolkien", 295, false);
-const theHobbit1 = Books("The Hobbits1", "J.R.R. Tolkien", 295, false);
-const theHobbit2 = Books("The Hobbits2", "J.R.R. Tolkien", 295, false);
+//-------------First step to check whether if it has items in localStorage------------
+function prefixes() {
+  if (localStorage.getItem("myLibrary")) {
+    JSON.parse(localStorage.getItem("myLibrary")).forEach(book => {
+      libraryBook = Books(book.title, book.author, book.pages, book.read);
+      myLibrary.push(libraryBook);
+    });
+  } else {
+    const theHobbit = Books("The Hobbits", "J.R.R. Tolkien", 295, false);
+    const theHobbit1 = Books("The Hobbits1", "J.R.R. Tolkien", 295, false);
+    const theHobbit2 = Books("The Hobbits2", "J.R.R. Tolkien", 295, false);
 
-addBookToLibrary(theHobbit);
-addBookToLibrary(theHobbit1);
-addBookToLibrary(theHobbit2);
+    addBookToLibrary(theHobbit);
+    addBookToLibrary(theHobbit1);
+    addBookToLibrary(theHobbit2);
+  }
+}
 
 init();
 
