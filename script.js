@@ -9,7 +9,11 @@ const Books = (title, author, pages, read) => {
   };
 
   const toggleReadBook = () => {
-    read = !read;
+    if (read === "true") {
+      read = "false";
+    } else {
+      read = "true";
+    }
   };
 
   return { title, author, pages, read, info, toggleReadBook };
@@ -80,6 +84,7 @@ function addNewBook() {
       form.elements.pages.value,
       document.getElementById("checking").value
     );
+    console.log(document.getElementById("checking").value);
     if (
       form.elements.title.value == "" ||
       form.elements.author.value == "" ||
@@ -137,8 +142,8 @@ function prefixes() {
     });
   } else {
     const theHobbit = Books("The Hobbits", "J.R.R. Tolkien", 295, false);
-    const theHobbit1 = Books("The BO", "Wuuu", 124, true);
-    const theHobbit2 = Books("The Ma", "Waa", 225, true);
+    const theHobbit1 = Books("The BO", "Wuuu", 124, false);
+    const theHobbit2 = Books("The Ma", "Waa", 225, false);
 
     addBookToLibrary(theHobbit);
     addBookToLibrary(theHobbit1);
