@@ -137,8 +137,8 @@ function prefixes() {
     });
   } else {
     const theHobbit = Books("The Hobbits", "J.R.R. Tolkien", 295, false);
-    const theHobbit1 = Books("The Hobbits1", "J.R.R. Tolkien", 295, false);
-    const theHobbit2 = Books("The Hobbits2", "J.R.R. Tolkien", 295, false);
+    const theHobbit1 = Books("The BO", "Wuuu", 124, true);
+    const theHobbit2 = Books("The Ma", "Waa", 225, true);
 
     addBookToLibrary(theHobbit);
     addBookToLibrary(theHobbit1);
