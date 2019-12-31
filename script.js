@@ -142,12 +142,22 @@ function prefixes() {
     });
   } else {
     const theHobbit = Books("The Hobbits", "J.R.R. Tolkien", 295, false);
-    const theHobbit1 = Books("The BO", "Wuuu", 124, false);
-    const theHobbit2 = Books("The Ma", "Waa", 225, false);
+    const mockingBird = Books(
+      "To Kill a Mockingbird",
+      "Harper Lee",
+      399,
+      false
+    );
+    const greatGatsby = Books(
+      "The Great Gatsby",
+      "F. Scott Fitzgerald",
+      148,
+      false
+    );
 
     addBookToLibrary(theHobbit);
-    addBookToLibrary(theHobbit1);
-    addBookToLibrary(theHobbit2);
+    addBookToLibrary(mockingBird);
+    addBookToLibrary(greatGatsby);
   }
 }
 
